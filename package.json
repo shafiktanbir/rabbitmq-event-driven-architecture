@@ -1,16 +1,29 @@
 {
-  "name": "rabitplay",
+  "name": "rabbitmq-event-driven-architecture",
   "version": "1.0.0",
-  "description": "Gamified RabbitMQ curriculum — learn by doing, level by level",
+  "description": "Production-grade RabbitMQ event-driven architecture showcasing enterprise fault-tolerance patterns: Publisher Confirms, Progressive DLX Retries, and Idempotent Consumers.",
   "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
+    "test:coverage": "jest --coverage --runInBand",
     "rabbit": "docker compose up -d",
     "rabbit:down": "docker compose down"
   },
   "dependencies": {
-    "amqplib": "^0.10.3"
+    "amqplib": "^0.10.4"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.7",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.5"
   }
 }
