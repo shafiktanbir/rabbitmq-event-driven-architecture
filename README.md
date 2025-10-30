@@ -14,27 +14,27 @@
 
 ```mermaid
 graph TD
-    Client[Producer Application] -->|1. Publish with DeliveryMode 2| Pub[ReliablePublisher]
-    Pub -->|2. Publisher Confirm ACK| Exchange[orders.exchange (Topic)]
+    Client["Producer Application"] -->|1. Publish with DeliveryMode 2| Pub["ReliablePublisher"]
+    Pub -->|2. Publisher Confirm ACK| Exchange["orders.exchange (Topic)"]
     
-    Exchange -->|3. Route orders.process| MainQ[orders.process (Queue)]
-    MainQ -->|4. Consume with Prefetch 10| Consumer[ReliableConsumer]
+    Exchange -->|3. Route orders.process| MainQ["orders.process (Queue)"]
+    MainQ -->|4. Consume with Prefetch 10| Consumer["ReliableConsumer"]
     
-    subgraph Idempotency Boundary
-        Consumer -->|5. Check / Set Lock| Dedupe[Idempotency Store (LRU Cache / Redis)]
+    subgraph Idempotency_Boundary ["Idempotency Boundary"]
+        Consumer -->|5. Check / Set Lock| Dedupe["Idempotency Store (LRU Cache / Redis)"]
     end
 
-    subgraph Progressive Retry & Poison Quarantine
-        Consumer -->|6. Transient Error (Attempt 1)| Retry10Exchange[orders.retry.exchange]
-        Retry10Exchange -->|x-dead-letter: orders.exchange / TTL 10s| Retry10Q[orders.retry.10s]
+    subgraph Retry_Quarantine ["Progressive Retry & Poison Quarantine"]
+        Consumer -->|6. Transient Error Attempt 1| Retry10Exchange["orders.retry.exchange"]
+        Retry10Exchange -->|TTL 10s DLX| Retry10Q["orders.retry.10s"]
         Retry10Q -.->|TTL Expiration| Exchange
 
-        Consumer -->|7. Transient Error (Attempt 2)| Retry60Exchange[orders.retry.exchange]
-        Retry60Exchange -->|x-dead-letter: orders.exchange / TTL 60s| Retry60Q[orders.retry.60s]
+        Consumer -->|7. Transient Error Attempt 2| Retry60Exchange["orders.retry.exchange"]
+        Retry60Exchange -->|TTL 60s DLX| Retry60Q["orders.retry.60s"]
         Retry60Q -.->|TTL Expiration| Exchange
 
-        Consumer -->|8. Terminal Failure (Attempt 3 >= Max)| PoisonExchange[orders.poison.dlx]
-        PoisonExchange -->|Quarantine| PoisonQ[orders.poison.dlq]
+        Consumer -->|8. Terminal Failure Attempt 3| PoisonExchange["orders.poison.dlx"]
+        PoisonExchange -->|Quarantine| PoisonQ["orders.poison.dlq"]
     end
 ```
 
