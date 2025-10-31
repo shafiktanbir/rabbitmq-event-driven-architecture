@@ -1,3 +1,6 @@
+> 💡 **Available for Technical Consulting & High-Concurrency Architecture Audits:**  
+> [Book a 20-min System Teardown](https://shafiktanbir.com/?tab=book) · [Explore Full Case Studies](https://shafiktanbir.com)
+
 # 🐇 rabbitmq-event-driven-architecture — Enterprise Resilient Messaging Core
 
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B-green.svg)](https://nodejs.org)
@@ -159,3 +162,9 @@ const handleOrder = withIdempotency(dedupeStore, async (payload) => {
 
 await consumer.consume('orders.process', handleOrder);
 ```
+
+---
+
+> 💡 **Available for Technical Consulting & High-Concurrency Architecture Audits:**  
+> [Book a 20-min System Teardown](https://shafiktanbir.com/?tab=book) · [Explore Full Case Studies](https://shafiktanbir.com)
+
