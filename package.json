@@ -1,0 +1,16 @@
+{
+  "name": "rabitplay",
+  "version": "1.0.0",
+  "description": "Gamified RabbitMQ curriculum — learn by doing, level by level",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "rabbit": "docker compose up -d",
+    "rabbit:down": "docker compose down"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.3"
+  }
+}
