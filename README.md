@@ -1,15 +1,14 @@
-> 💡 **Available for Technical Consulting & High-Concurrency Architecture Audits:**  
-> [Book a 20-min System Teardown](https://shafiktanbir.com/?tab=book) · [Explore Full Case Studies](https://shafiktanbir.com)
-
 # 🐇 rabbitmq-event-driven-architecture — Enterprise Resilient Messaging Core
 
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B-green.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-v5.3-blue.svg)](https://www.typescriptlang.org)
 [![RabbitMQ](https://img.shields.io/badge/RabbitMQ-v3.13-orange.svg)](https://www.rabbitmq.com)
-[![Jest](https://img.shields.io/badge/Jest-100%25_Passing-brightgreen.svg)](https://jestjs.io)
+[![Jest](https://img.shields.io/badge/Jest-Passing-brightgreen.svg)](https://github.com/shafiktanbir/rabbitmq-event-driven-architecture/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> Production-grade, fault-tolerant messaging framework built on RabbitMQ and TypeScript. Engineered for enterprise mission-critical workloads requiring publisher confirms, progressive dead-letter retry topologies, LRU idempotency deduplication, connection backoff resilience, and zero message loss under network partitions.
+**What This System Solves:** Ensures background jobs (emails, receipts, webhooks) automatically retry with backoff and never get silently dropped during downstream outages.
+
+> Fault-tolerant messaging core built on RabbitMQ and TypeScript implementing publisher confirms, progressive dead-letter retry topologies (`10s -> 60s -> poison DLQ`), LRU idempotency deduplication, and connection backoff resilience.
 
 ---
 
@@ -162,9 +161,4 @@ const handleOrder = withIdempotency(dedupeStore, async (payload) => {
 
 await consumer.consume('orders.process', handleOrder);
 ```
-
----
-
-> 💡 **Available for Technical Consulting & High-Concurrency Architecture Audits:**  
-> [Book a 20-min System Teardown](https://shafiktanbir.com/?tab=book) · [Explore Full Case Studies](https://shafiktanbir.com)
 
