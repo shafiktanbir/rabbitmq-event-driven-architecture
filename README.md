@@ -3,7 +3,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B-green.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-v5.3-blue.svg)](https://www.typescriptlang.org)
 [![RabbitMQ](https://img.shields.io/badge/RabbitMQ-v3.13-orange.svg)](https://www.rabbitmq.com)
-[![Jest](https://img.shields.io/badge/Jest-Passing-brightgreen.svg)](https://github.com/shafiktanbir/rabbitmq-event-driven-architecture/actions)
+[![RabbitMQ CI](https://github.com/shafiktanbir/rabbitmq-event-driven-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/shafiktanbir/rabbitmq-event-driven-architecture/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **What This System Solves:** Ensures background jobs (emails, receipts, webhooks) automatically retry with backoff and never get silently dropped during downstream outages.
